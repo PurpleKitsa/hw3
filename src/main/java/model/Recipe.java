@@ -15,14 +15,13 @@ public class Recipe {
         } else {
             throw new RuntimeException("название рецепта не введено");
         }
-     if(cookingTime >0)
-    {
-        this.cookingTime = cookingTime;
-    } else {
-        throw new RuntimeException("введено некоректное значение");
-    }
+        if (cookingTime > 0) {
+            this.cookingTime = cookingTime;
+        } else {
+            throw new RuntimeException("введено некоректное значение");
+        }
 
-}
+    }
 
     public String getName() {
         return name;

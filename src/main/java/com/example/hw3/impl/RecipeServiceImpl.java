@@ -6,8 +6,8 @@ import service.RecipeService;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecipeServiceImpl implements RecipeService {
-        public final Map<Integer, Recipe> listRecipe = new HashMap<>();
+public abstract class RecipeServiceImpl implements RecipeService {
+    public final Map<Integer, Recipe> listRecipe = new HashMap<>();
     private int counter = 0;
 
     @Override
@@ -17,7 +17,26 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe showRecipe(int number) {
-        return listRecipe.get(number);
+    public Recipe showRecipe(int id) {
+        Recipe recipe = listRecipe.get(id);
+        if (recipe != null) {
+            return recipe;
+        }
+        return null;
+    }
+
+    @Override
+    public Map<Integer, Recipe> listRecipe() {
+        return listRecipe;
+    }
+
+    @Override
+    public boolean deleteRecipe(int id) {
+        if (listRecipe.containsKey(id)) {
+            listRecipe.remove(id);
+            return true;
+        }
+        return false;
     }
 }
+

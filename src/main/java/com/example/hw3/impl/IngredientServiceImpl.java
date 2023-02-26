@@ -6,19 +6,49 @@ import service.IngredientService;
 import java.util.HashMap;
 import java.util.Map;
 
-public class IngredientServiceImpl implements IngredientService {
+public abstract class IngredientServiceImpl implements IngredientService {
     public final Map<Integer, Ingredient> listIngredients = new HashMap<>();
     private static int counter = 0;
+
     @Override
-    public void addIngredient(Ingredient ingredient) {
+    public int addIngredient(Ingredient ingredient) {
         counter++;
         listIngredients.put(counter, ingredient);
+
+        return 0;
+    }
+
+    @Override
+    public Ingredient showIngredient(int id) {
+        Ingredient ingredient = listIngredients.get(id);
+        if (ingredient != null) {
+            return ingredient;
+        }
+        return null;
+    }
+
+    @Override
+    public Map<Integer, Ingredient> listIngredient() {
+        return listIngredients;
 
     }
 
     @Override
-    public Ingredient showIngredient(int number) {
-        return listIngredients.get(number);
+    public Ingredient editIngredient(int id, Ingredient ingredient) {
+        if (listIngredients.containsKey(id)) {
+            listIngredients.put(id, ingredient);
+            return ingredient;
+        }
+        return null;
+    }
+
+    @Override
+    public boolean deleteIngredient(int id) {
+        if (listIngredients.containsKey(id)) {
+            listIngredients.remove(id);
+            return true;
+        }
+        return false;
     }
 }
 

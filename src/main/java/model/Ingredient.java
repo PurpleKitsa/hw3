@@ -6,6 +6,7 @@ public class Ingredient {
     private String name;
     private int count;
     private String measureUnit;
+
     public Ingredient(String name, int count, String measureUnit) {
         if (name != null) {
 
